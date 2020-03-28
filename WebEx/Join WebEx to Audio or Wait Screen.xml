@@ -64,7 +64,7 @@
             <act:Transition from="idle" id="idle-Start" to="Start">
                 <ANY>
                     <Literal act:cartridge="ux">
-                        <ux:uxevent type="LeftMouseClick">
+                    <ux:uxevent type="LeftMouseClick">
                             <AND>
                                 <ux:condition hasValue="dialog" matchType="exact" property="accRole"/>
                                 <ux:condition hasValue="Cisco Webex Meetings" matchType="exact" property="accName"/>
