@@ -1,0 +1,1 @@
+This custom signature measures the time it takes to authenticate with GlobalProtect VPN (user think time has been eliminated). Enjoy! Steve Sussich.
