@@ -76,6 +76,18 @@
 							</ux:uxevent>
 					</Literal>
 					<Literal act:cartridge="ux">
+                    <ux:uxevent type="LeftMouseClick">
+                        <AND>
+                            <ux:condition hasValue="dialog" matchType="exact" property="accRole"/>
+                            <ux:condition hasValue="Webex Meeting Reminder" matchType="exact" property="accName"/>
+                            <ux:condition hasValue="Webex Meeting Reminder" matchType="exact" property="win32FirstNonChildWindowTitle"/>
+                            <ux:condition hasValue="wcl_manager1" matchType="exact" property="win32FirstNonChildWindowClass"/>
+                            <ux:condition hasValue="wcl_manager1" matchType="exact" property="win32EventWindowClass"/>
+                            <ux:condition hasValue="None" matchType="exact" property="Modifier"/>
+                        </AND>
+                    </ux:uxevent>
+					</Literal>					
+					<Literal act:cartridge="ux">
 							<ux:uxevent type="KeyPress">
 							<AND>
                             <ux:condition hasValue="text" matchType="exact" property="accRole"/>
