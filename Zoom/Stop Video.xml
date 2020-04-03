@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ActivityConfiguration xmlns:act="www.aternity.com/activity" xmlns:html="www.aternity.com/html" xmlns:http="www.aternity.com/http" xmlns:java="www.aternity.com/java" xmlns:js="www.aternity.com/js" xmlns:mobile="www.aternity.com/mobile" xmlns:net="www.aternity.com/network" xmlns:ora="www.aternity.com/oracle" xmlns:sys="www.aternity.com/sys" xmlns:ui="www.aternity.com/ui" xmlns:ux="www.aternity.com/ux" xmlns:xgen="www.aternity.com/xgen" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <act:Activity timeout="180" xmlns="www.aternity.com/activity">
-        <sys:process act:id="oProcess1" act:idtype="referenceORdefine">
+        <sys:process act:id="oProcess1" act:idtype="redefine">
             <sys:name value="zoom"/>
         </sys:process>
         <States>
@@ -37,16 +37,29 @@
                 </Literal>
             </act:Transition>
             <act:Transition from="Start" id="Start-Complete" to="Complete">
-                <Literal act:cartridge="ux">
-                    <ux:uxevent type="ObjectNameChange">
-                        <AND>
-                            <ux:condition hasValue="alert" matchType="exact" property="accRole"/>
-                            <ux:condition hasValue="video now stopped" matchType="exact" property="accName"/>
-                            <ux:condition hasValue="zoom_acc_notify_wnd" matchType="exact" property="win32FirstNonChildWindowClass"/>
-                            <ux:condition hasValue="zoom_acc_notify_wnd" matchType="exact" property="win32EventWindowClass"/>
-                        </AND>
-                    </ux:uxevent>
-                </Literal>
+                <ANY>
+                    <Literal act:cartridge="ux">
+                        <ux:uxevent type="ObjectNameChange">
+                            <AND>
+                                <ux:condition hasValue="alert" matchType="exact" property="accRole"/>
+                                <ux:condition hasValue="video now stopped" matchType="exact" property="accName"/>
+                                <ux:condition hasValue="zoom_acc_notify_wnd" matchType="exact" property="win32FirstNonChildWindowClass"/>
+                                <ux:condition hasValue="zoom_acc_notify_wnd" matchType="exact" property="win32EventWindowClass"/>
+                            </AND>
+                        </ux:uxevent>
+                    </Literal>
+                    <Literal act:cartridge="ux">
+                        <ux:uxevent type="ObjectNameChange">
+                            <AND>
+                                <ux:condition hasValue="push button" matchType="exact" property="accRole"/>
+                                <ux:condition hasValue="start my video" matchType="exact" property="accName"/>
+                                <ux:condition hasValue="^Zoom Participant ID: .*" matchType="regex" property="win32FirstNonChildWindowTitle"/>
+                                <ux:condition hasValue="ZPContentViewWndClass" matchType="exact" property="win32FirstNonChildWindowClass"/>
+                                <ux:condition hasValue="ZPControlPanelClass" matchType="exact" property="win32EventWindowClass"/>
+                            </AND>
+                        </ux:uxevent>
+                    </Literal>
+                </ANY>
             </act:Transition>
             <act:Transition from="Start" id="Start-Incomplete1" to="Incomplete">
                 <ANY>

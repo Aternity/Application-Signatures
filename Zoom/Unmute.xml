@@ -48,16 +48,29 @@
                 </ANY>
             </act:Transition>
             <act:Transition from="Start" id="Start-Complete" to="Complete">
-                <Literal act:cartridge="ux">
-                    <ux:uxevent type="ObjectNameChange">
-                        <AND>
-                            <ux:condition hasValue="alert" matchType="exact" property="accRole"/>
-                            <ux:condition hasValue="audio now unmuted" matchType="exact" property="accName"/>
-                            <ux:condition hasValue="zoom_acc_notify_wnd" matchType="exact" property="win32FirstNonChildWindowClass"/>
-                            <ux:condition hasValue="zoom_acc_notify_wnd" matchType="exact" property="win32EventWindowClass"/>
-                        </AND>
-                    </ux:uxevent>
-                </Literal>
+                <ANY>
+                    <Literal act:cartridge="ux">
+                        <ux:uxevent type="ObjectNameChange">
+                            <AND>
+                                <ux:condition hasValue="alert" matchType="exact" property="accRole"/>
+                                <ux:condition hasValue="audio now unmuted" matchType="exact" property="accName"/>
+                                <ux:condition hasValue="zoom_acc_notify_wnd" matchType="exact" property="win32FirstNonChildWindowClass"/>
+                                <ux:condition hasValue="zoom_acc_notify_wnd" matchType="exact" property="win32EventWindowClass"/>
+                            </AND>
+                        </ux:uxevent>
+                    </Literal>
+                    <Literal act:cartridge="ux">
+                        <ux:uxevent type="ObjectNameChange">
+                            <AND>
+                                <ux:condition hasValue="push button" matchType="exact" property="accRole"/>
+                                <ux:condition hasValue="Mute, currently unmuted," matchType="exact" property="accName"/>
+                                <ux:condition hasValue="^Zoom Meeting ID: .*" matchType="regex" property="win32FirstNonChildWindowTitle"/>
+                                <ux:condition hasValue="ZPContentViewWndClass" matchType="exact" property="win32FirstNonChildWindowClass"/>
+                                <ux:condition hasValue="ZPControlPanelClass" matchType="exact" property="win32EventWindowClass"/>
+                            </AND>
+                        </ux:uxevent>
+                    </Literal>
+                </ANY>
             </act:Transition>
             <act:Transition from="Start" id="Start-Incomplete1" to="Incomplete">
                 <ANY>
