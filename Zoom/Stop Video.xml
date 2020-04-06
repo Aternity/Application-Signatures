@@ -23,18 +23,29 @@
         </States>
         <Transitions>
             <act:Transition from="idle" id="idle-Start" to="Start">
-                <Literal act:cartridge="ux">
-                    <ux:uxevent type="LeftMouseClick">
-                        <AND>
-                            <ux:condition hasValue="window" matchType="exact" property="accRole"/>
-                            <ux:condition hasValue="Meeting Tools" matchType="exact" property="accName"/>
-                            <ux:condition hasValue=".*Meeting ID.*" matchType="regex" property="win32FirstNonChildWindowTitle"/>
-                            <ux:condition hasValue="ZPContentViewWndClass" matchType="exact" property="win32FirstNonChildWindowClass"/>
-                            <ux:condition hasValue="ZPControlPanelClass" matchType="exact" property="win32EventWindowClass"/>
-                            <ux:condition hasValue="None" matchType="exact" property="Modifier"/>
-                        </AND>
-                    </ux:uxevent>
-                </Literal>
+                <ANY>
+                    <Literal act:cartridge="ux">
+                        <ux:uxevent type="LeftMouseClick">
+                            <AND>
+                                <ux:condition hasValue="window" matchType="exact" property="accRole"/>
+                                <ux:condition hasValue="Meeting Tools" matchType="exact" property="accName"/>
+                                <ux:condition hasValue=".*Meeting ID.*" matchType="regex" property="win32FirstNonChildWindowTitle"/>
+                                <ux:condition hasValue="ZPContentViewWndClass" matchType="exact" property="win32FirstNonChildWindowClass"/>
+                                <ux:condition hasValue="ZPControlPanelClass" matchType="exact" property="win32EventWindowClass"/>
+                                <ux:condition hasValue="None" matchType="exact" property="Modifier"/>
+                            </AND>
+                        </ux:uxevent>
+                    </Literal>
+                    <Literal act:cartridge="ux">
+                        <ux:uxevent type="KeyPress">
+                            <AND>
+                                <ux:condition hasValue=".*Meeting ID.*" matchType="regex" property="win32FirstNonChildWindowTitle"/>
+                                <ux:condition hasValue="86" matchType="exact" property="VKey"/>
+                                <ux:condition hasValue="Alt" matchType="exact" property="Modifier"/>
+                            </AND>
+                        </ux:uxevent>
+                    </Literal>
+                </ANY>
             </act:Transition>
             <act:Transition from="Start" id="Start-Complete" to="Complete">
                 <ANY>
@@ -88,6 +99,15 @@
                                 <ux:condition hasValue="ZPContentViewWndClass" matchType="exact" property="win32FirstNonChildWindowClass"/>
                                 <ux:condition hasValue="ZPControlPanelClass" matchType="exact" property="win32EventWindowClass"/>
                                 <ux:condition hasValue="None" matchType="exact" property="Modifier"/>
+                            </AND>
+                        </ux:uxevent>
+                    </Literal>
+                    <Literal act:cartridge="ux">
+                        <ux:uxevent type="KeyPress">
+                            <AND>
+                                <ux:condition hasValue=".*Meeting ID.*" matchType="regex" property="win32FirstNonChildWindowTitle"/>
+                                <ux:condition hasValue="86" matchType="exact" property="VKey"/>
+                                <ux:condition hasValue="Alt" matchType="exact" property="Modifier"/>
                             </AND>
                         </ux:uxevent>
                     </Literal>
