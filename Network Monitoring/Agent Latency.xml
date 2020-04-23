@@ -1,0 +1,31 @@
+<GenericPlugin>
+    <Application>
+        <monitoredAttributes>
+            <monitoredAttribute agentPluginName="TotalIncomingBytes" enabled="true" maType="PluginMonitored1" sensitivity="2" uiName="Total Incoming Bytes" usageValue="NotSpecified"/>
+            <monitoredAttribute agentPluginName="TotalOutgoingBytes" enabled="true" maType="PluginMonitored2" sensitivity="2" uiName="Total Outgoing Bytes" usageValue="NotSpecified"/>
+            <monitoredAttribute agentPluginName="DiffIncomingBytes" enabled="true" maType="PluginMonitored3" sensitivity="2" uiName="Difference Incoming Bytes" usageValue="NotSpecified"/>
+            <monitoredAttribute agentPluginName="DiffOutgoingBytes" enabled="true" maType="PluginMonitored4" sensitivity="2" uiName="Difference Outgoing Bytes" usageValue="NotSpecified"/>
+            <monitoredAttribute agentPluginName="Latency" enabled="true" maType="PluginMonitored5" sensitivity="2" uiName="Latency" usageValue="NotSpecified"/>
+            <monitoredAttribute agentPluginName="SampleRtt" enabled="true" maType="PluginMonitored6" sensitivity="2" uiName="Sample Rtt" usageValue="NotSpecified"/>
+        </monitoredAttributes>
+        <contextualAttributes>
+            <contextualAttribute agentPluginName="ApplicationName" maxValueCount="60000" saType="PluginContextual5" uiName="Application Name" useForAvailabilty="false"/>
+            <contextualAttribute agentPluginName="ApplicationVersion" maxValueCount="60000" saType="PluginContextual6" uiName="Application Version" useForAvailabilty="false"/>
+            <contextualAttribute agentPluginName="ProcessName" maxValueCount="60000" saType="PluginContextual7" uiName="Process Name" useForAvailabilty="false"/>
+            <contextualAttribute agentPluginName="LocalAddress" maxValueCount="60000" saType="PluginContextual1" uiName="Local Address" useForAvailabilty="false"/>
+            <contextualAttribute agentPluginName="LocalPort" maxValueCount="60000" saType="PluginContextual2" uiName="Local Port" useForAvailabilty="false"/>
+            <contextualAttribute agentPluginName="RemoteAddress" maxValueCount="60000" saType="PluginContextual3" uiName="Remote Address" useForAvailabilty="false"/>
+            <contextualAttribute agentPluginName="RemotePort" maxValueCount="60000" saType="PluginContextual4" uiName="Remote Port" useForAvailabilty="false"/>
+        </contextualAttributes>
+    </Application>
+    <AgentConfiguration>
+        <Plugin alias="ApplicationDiscoveryNetworkMonitor" dllName="Com.Aternity.Agent.ApplicationDiscoveryPlugin.dll" frequency="60000"/>
+        <Parameters>
+            <Parameter name="InternalFrequency" value="5000"/>
+            <Parameter name="ProcessNameRegex" value="a180cm"/>
+            <Parameter name="LocalAddressRegex" value="^.*$"/>
+            <Parameter name="LocalPortRegex" value=".*"/>
+            <Parameter name="RemotePortRegex" value=".*"/>
+        </Parameters>
+    </AgentConfiguration>
+</GenericPlugin>
