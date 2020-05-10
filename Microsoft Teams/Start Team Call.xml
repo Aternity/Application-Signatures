@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?><ActivityConfiguration xmlns:act="www.aternity.com/activity" xmlns:html="www.aternity.com/html" xmlns:http="www.aternity.com/http" xmlns:java="www.aternity.com/java" xmlns:js="www.aternity.com/js" xmlns:mobile="www.aternity.com/mobile" xmlns:net="www.aternity.com/network" xmlns:ora="www.aternity.com/oracle" xmlns:sys="www.aternity.com/sys" xmlns:ui="www.aternity.com/ui" xmlns:ux="www.aternity.com/ux" xmlns:xgen="www.aternity.com/xgen" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <act:Activity xmlns="www.aternity.com/activity" timeout="180">
+        <sys:process act:id="oProcess1" act:idtype="referenceORdefine">
+            <sys:name value="teams"/>
+        </sys:process>
+        <States>
+            <act:State id="idle" type="start"/>
+            <act:State id="Start" measure="application">
+                <act:Literal act:cartridge="network">
+                    <act:AND>
+                        <net:traffic event="accumulate"/>
+                        <net:ipAddress from="0.0.0.0" to="255.255.255.255"/>
+                    </act:AND>
+                </act:Literal>
+            </act:State>
+            <act:State id="Complete" measure="user" type="endmatch">
+                <act:Action act:cartridge="sys">
+                    <act:setValue name="isAvailable" value="true"/>
+                </act:Action>
+            </act:State>
+            <act:State id="Incomplete" measure="user" type="endnomatch"/>
+            <act:State id="Identification1" measure="application">
+                <act:Literal act:cartridge="network">
+                    <act:AND>
+                        <net:traffic event="accumulate"/>
+                        <net:ipAddress from="0.0.0.0" to="255.255.255.255"/>
+                    </act:AND>
+                </act:Literal>
+            </act:State>
+        </States>
+        <Transitions>
+            <act:Transition from="idle" id="idle-Start" to="Start">
+                <Literal act:cartridge="ux">
+                    <ux:uxevent type="LeftMouseClick">
+                        <AND>
+                            <ux:condition hasValue="DIV" matchType="exact" property="accRole"/>
+                            <ux:condition hasValue="Calendar Meet now New meeting" matchType="exact" property="accName"/>
+                            <ux:condition hasValue="Calendar | Microsoft Teams" matchType="exact" property="win32FirstNonChildWindowTitle"/>
+                            <ux:condition hasValue="Chrome_WidgetWin_1" matchType="exact" property="win32FirstNonChildWindowClass"/>
+                            <ux:condition hasValue="Chrome_RenderWidgetHostHWND" matchType="exact" property="win32EventWindowClass"/>
+                            <ux:condition hasValue="None" matchType="exact" property="Modifier"/>
+                        </AND>
+                    </ux:uxevent>
+                </Literal>
+            </act:Transition>
+            <act:Transition from="Start" id="Start-Identification1" to="Identification1">
+                <Literal act:cartridge="ux">
+                    <ux:uxevent type="ObjectFocus">
+                        <AND>
+                            <ux:condition hasValue="push button" matchType="exact" property="accRole"/>
+                            <ux:condition hasValue="Join the meeting" matchType="exact" property="accName"/>
+                            <ux:condition hasValue="Chrome_WidgetWin_1" matchType="exact" property="win32FirstNonChildWindowClass"/>
+                            <ux:condition hasValue="Chrome_RenderWidgetHostHWND" matchType="exact" property="win32EventWindowClass"/>
+                        </AND>
+                    </ux:uxevent>
+                </Literal>
+            </act:Transition>
+            <act:Transition from="Identification1" id="Identification1-Complete" to="Complete">
+                <Literal act:cartridge="ux">
+                    <ux:uxevent type="ObjectShow">
+                        <AND>
+                            <ux:condition hasValue="static text" matchType="exact" property="accRole"/>
+                            <ux:condition hasValue="Connected" matchType="exact" property="accName"/>
+                            <ux:condition hasValue="Chrome_WidgetWin_1" matchType="exact" property="win32FirstNonChildWindowClass"/>
+                            <ux:condition hasValue="Chrome_RenderWidgetHostHWND" matchType="exact" property="win32EventWindowClass"/>
+                        </AND>
+                    </ux:uxevent>
+                </Literal>
+            </act:Transition>
+            <act:Transition from="Start" id="Start-Incomplete1" to="Incomplete">
+                <ANY>
+                    <Literal act:cartridge="ux">
+                        <ux:uxevent type="KeyPress">
+                            <AND>
+                                <ux:condition hasValue=".*" matchType="regex" property="VKey"/>
+                                <ux:condition hasValue="None" matchType="exact" property="Modifier"/>
+                            </AND>
+                        </ux:uxevent>
+                    </Literal>
+                    <Literal act:cartridge="ux">
+                        <ux:uxevent type="SystemProcessLostForeground"/>
+                    </Literal>
+                    <Literal act:cartridge="ux">
+                        <ux:uxevent type="LeftMouseClick">
+                            <AND>
+                                <ux:condition hasValue="DIV" matchType="exact" property="accRole"/>
+                                <ux:condition hasValue="Calendar Meet now New meeting" matchType="exact" property="accName"/>
+                                <ux:condition hasValue="Calendar | Microsoft Teams" matchType="exact" property="win32FirstNonChildWindowTitle"/>
+                                <ux:condition hasValue="Chrome_WidgetWin_1" matchType="exact" property="win32FirstNonChildWindowClass"/>
+                                <ux:condition hasValue="Chrome_RenderWidgetHostHWND" matchType="exact" property="win32EventWindowClass"/>
+                                <ux:condition hasValue="None" matchType="exact" property="Modifier"/>
+                            </AND>
+                        </ux:uxevent>
+                    </Literal>
+                </ANY>
+            </act:Transition>
+            <act:Transition from="Identification1" id="Identification1-Incomplete2" to="Incomplete">
+                <ANY>
+                    <Literal act:cartridge="ux">
+                        <ux:uxevent type="KeyPress">
+                            <AND>
+                                <ux:condition hasValue=".*" matchType="regex" property="VKey"/>
+                                <ux:condition hasValue="None" matchType="exact" property="Modifier"/>
+                            </AND>
+                        </ux:uxevent>
+                    </Literal>
+                    <Literal act:cartridge="ux">
+                        <ux:uxevent type="SystemProcessLostForeground"/>
+                    </Literal>
+                    <Literal act:cartridge="ux">
+                        <ux:uxevent type="LeftMouseClick">
+                            <AND>
+                                <ux:condition hasValue="DIV" matchType="exact" property="accRole"/>
+                                <ux:condition hasValue="Calendar Meet now New meeting" matchType="exact" property="accName"/>
+                                <ux:condition hasValue="Calendar | Microsoft Teams" matchType="exact" property="win32FirstNonChildWindowTitle"/>
+                                <ux:condition hasValue="Chrome_WidgetWin_1" matchType="exact" property="win32FirstNonChildWindowClass"/>
+                                <ux:condition hasValue="Chrome_RenderWidgetHostHWND" matchType="exact" property="win32EventWindowClass"/>
+                                <ux:condition hasValue="None" matchType="exact" property="Modifier"/>
+                            </AND>
+                        </ux:uxevent>
+                    </Literal>
+                </ANY>
+            </act:Transition>
+        </Transitions>
+        <Measurements>
+            <act:monitoredAttribute enabled="true" maType="ActivityResponse"/>
+            <act:monitoredAttribute enabled="true" maType="NetworkLatency">
+                <act:Configuration minBytesIn="100" minBytesOut="100" xsi:type="TYPE_networkLatencyMonitoredAttributeConfiguration"/>
+            </act:monitoredAttribute>
+            <act:monitoredAttribute enabled="true" maType="TotalNetworkResponseTime"/>
+            <act:monitoredAttribute enabled="true" maType="ClientTime"/>
+            <act:monitoredAttribute enabled="true" maType="TotalNetworkIncomingTraffic"/>
+            <act:monitoredAttribute enabled="true" maType="TotalNetworkOutgoingTraffic"/>
+            <contextualAttribute saType="ServerID">
+                <act:Configuration/>
+            </contextualAttribute>
+        <act:contextualAttribute saType="ApplicationName">
+	<act:Configuration/>
+</act:contextualAttribute><act:contextualAttribute saType="ApplicationVersion">
+	<act:Configuration/>
+</act:contextualAttribute><act:monitoredAttribute enabled="true" maType="TotalNetworkServerTime"/><act:monitoredAttribute enabled="true" maType="AverageNetworkRtt"/><act:contextualAttribute saType="ServerIP">
+	<act:Configuration/>
+</act:contextualAttribute><act:contextualAttribute saType="ServerName">
+	<act:Configuration/>
+</act:contextualAttribute><act:contextualAttribute saType="ServerHostName">
+	<act:Configuration/>
+</act:contextualAttribute></Measurements>
+    </act:Activity>
+</ActivityConfiguration>

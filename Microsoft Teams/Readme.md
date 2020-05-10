@@ -1,0 +1,1 @@
+These custom signatures for MS Teams have all been successfully validated on the client-side for a customer. The Teams Chromium Enabler is required (validated with Aternity Agent 12.0.2). Regards, Steve Sussich.
