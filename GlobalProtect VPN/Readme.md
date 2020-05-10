@@ -1,1 +1,1 @@
-This custom signature measures the time it takes to authenticate with GlobalProtect VPN (user think time has been eliminated). Enjoy! Steve Sussich.
+This custom signature (Connect VPN w 2FA SecureAuth.xml) measures the time it takes to authenticate with GlobalProtect VPN with 2FA SecureAuth(user think time has been eliminated). Enjoy! Steve Sussich.
