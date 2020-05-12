@@ -1,0 +1,1 @@
+This signature is for measuring the EUE of playing a song on Spotify. Thanks! Steve Sussich
