@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><ActivityConfiguration xmlns:act="www.aternity.com/activity" xmlns:html="www.aternity.com/html" xmlns:http="www.aternity.com/http" xmlns:java="www.aternity.com/java" xmlns:js="www.aternity.com/js" xmlns:mobile="www.aternity.com/mobile" xmlns:net="www.aternity.com/network" xmlns:ora="www.aternity.com/oracle" xmlns:sys="www.aternity.com/sys" xmlns:ui="www.aternity.com/ui" xmlns:ux="www.aternity.com/ux" xmlns:xgen="www.aternity.com/xgen" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <act:Activity xmlns="www.aternity.com/activity" timeout="180">
+<?xml version="1.0" encoding="UTF-8"?>
+<ActivityConfiguration xmlns:act="www.aternity.com/activity" xmlns:html="www.aternity.com/html" xmlns:http="www.aternity.com/http" xmlns:java="www.aternity.com/java" xmlns:js="www.aternity.com/js" xmlns:mobile="www.aternity.com/mobile" xmlns:net="www.aternity.com/network" xmlns:ora="www.aternity.com/oracle" xmlns:sys="www.aternity.com/sys" xmlns:ui="www.aternity.com/ui" xmlns:ux="www.aternity.com/ux" xmlns:xgen="www.aternity.com/xgen" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <act:Activity timeout="180" xmlns="www.aternity.com/activity">
         <sys:process act:id="oProcess1" act:idtype="referenceORdefine">
             <sys:name value="teams"/>
         </sys:process>
@@ -47,33 +48,19 @@
                             </AND>
                         </ux:uxevent>
                     </Literal>
-                </ANY>
+				</ANY>
             </act:Transition>
             <act:Transition from="Start" id="Start-Complete" to="Complete">
-                <ANY>
-                    <Literal act:cartridge="ux">
-                        <ux:uxevent type="ObjectShow">
-                            <AND>
-                                <ux:condition hasValue="static text" matchType="exact" property="accRole"/>
-                                <ux:condition hasValue=".*You:.*" matchType="regex" property="accName"/>
-                                <ux:condition hasValue=".*Microsoft Teams.*" matchType="regex" property="win32FirstNonChildWindowTitle"/>
-                                <ux:condition hasValue="Chrome_WidgetWin_1" matchType="exact" property="win32FirstNonChildWindowClass"/>
-                                <ux:condition hasValue="Chrome_RenderWidgetHostHWND" matchType="exact" property="win32EventWindowClass"/>
-                            </AND>
-                        </ux:uxevent>
-                    </Literal>
-                    <Literal act:cartridge="ux">
-                        <ux:uxevent type="ObjectShow">
-                            <AND>
-                                <ux:condition hasValue="static text" matchType="exact" property="accRole"/>
-                                <ux:condition hasValue="Message sent" matchType="exact" property="accName"/>
-                                <ux:condition hasValue=".*Microsoft Teams.*" matchType="regex" property="win32FirstNonChildWindowTitle"/>
-                                <ux:condition hasValue="Chrome_WidgetWin_1" matchType="exact" property="win32FirstNonChildWindowClass"/>
-                                <ux:condition hasValue="Chrome_RenderWidgetHostHWND" matchType="exact" property="win32EventWindowClass"/>
-                            </AND>
-                        </ux:uxevent>
-                    </Literal>
-                </ANY>
+                <Literal act:cartridge="ux">
+                    <ux:uxevent type="ObjectNameChange">
+                        <AND>
+                            <ux:condition hasValue="DIV" matchType="exact" property="accRole"/>
+                            <ux:condition hasValue="Sent" matchType="exact" property="accName"/>
+                            <ux:condition hasValue="Chrome_WidgetWin_1" matchType="exact" property="win32FirstNonChildWindowClass"/>
+                            <ux:condition hasValue="Chrome_RenderWidgetHostHWND" matchType="exact" property="win32EventWindowClass"/>
+                        </AND>
+                    </ux:uxevent>
+                </Literal>
             </act:Transition>
             <act:Transition from="Start" id="Start-Incomplete1" to="Incomplete">
                 <ANY>
@@ -132,16 +119,6 @@
             <contextualAttribute saType="ServerID">
                 <act:Configuration/>
             </contextualAttribute>
-        <act:contextualAttribute saType="ApplicationName">
-	<act:Configuration/>
-</act:contextualAttribute><act:contextualAttribute saType="ApplicationVersion">
-	<act:Configuration/>
-</act:contextualAttribute><act:monitoredAttribute enabled="true" maType="TotalNetworkServerTime"/><act:monitoredAttribute enabled="true" maType="AverageNetworkRtt"/><act:contextualAttribute saType="ServerIP">
-	<act:Configuration/>
-</act:contextualAttribute><act:contextualAttribute saType="ServerName">
-	<act:Configuration/>
-</act:contextualAttribute><act:contextualAttribute saType="ServerHostName">
-	<act:Configuration/>
-</act:contextualAttribute></Measurements>
+        </Measurements>
     </act:Activity>
 </ActivityConfiguration>
