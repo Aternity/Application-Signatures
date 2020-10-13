@@ -1,0 +1,1 @@
+This custom signature will detect flash content/objects on any website. It also has a contexutal attribuite for Info1 for the URL string. Enjoy! Regards, Steve Sussich.
