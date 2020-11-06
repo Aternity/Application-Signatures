@@ -7,6 +7,7 @@
                 <sys:name value="Google Chrome"/>
                 <sys:name value="firefox"/>
                 <sys:name value="MicrosoftEdge"/>
+				<sys:name value="msedge"/>
             </OR>
         </sys:process>
         <act:States>
