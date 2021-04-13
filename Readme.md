@@ -1,8 +1,7 @@
-In this repo, you will be able to find examples of Application signatures shared by the Aternity Community
+# Aternity Custom Signature to Detect Miscrosoft Silverlight Component
 
-- Signature files are grouped into folders by application (and maybe a version)
-- Each folder has a REAME.md file that will describe:
-  - All activities that are part of this monitoring package
-  - Specify what it measures for each activity
+## Microsoft Silverlight will reach the [end of support on October 12, 2021.](https://support.microsoft.com/en-us/windows/silverlight-end-of-support-0a3be3c7-bead-e203-2dfd-74f0a64f1788) Silverlight development framework is currently only supported on Internet Explorer 10 and Internet Explorer 11, with support for Internet Explorer 10 ending on January 31, 2020. There is no longer support for Chrome, Firefox, or any browser using the Mac operating system.
 
-**Note:** These signatures haven’t not been QA-ed by Aternity Engineering, please test locally before deployed in production
+* By Deploying this signature aternity will be able to capture web transactions over IE with XAP - **Silverlight Embedded Web Resource packages**.
+
+* Aternity will be able to provide URL information. 
